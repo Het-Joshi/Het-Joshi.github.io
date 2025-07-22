@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Het Rutul Joshi - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #111111;
+            --text-color: #f0f0f0;
+            --accent-color: #FF9933; /* Saffron */
+            --border-color: #f0f0f0;
+            --secondary-bg: #1a1a1a;
+        }
+        ::selection {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .brutalist-border {
+            border: 2px solid var(--border-color);
+            background-color: var(--secondary-bg);
+        }
+        .brutalist-button {
+            border: 2px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.2s ease-in-out;
+            padding: 0.75rem 1.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .brutalist-button:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+            box-shadow: 5px 5px 0px var(--border-color);
+            transform: translate(-2px, -2px);
+        }
+        .accent-color { color: var(--accent-color); }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .nav-link.active, .nav-link:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        .page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .page.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .image-container {
+            position: relative;
+            border: 2px solid var(--border-color);
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+        .image-container:hover img { filter: grayscale(0%); }
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(17, 17, 17, 0.8);
+            color: var(--text-color);
+            padding: 0.5rem;
+            font-size: 0.75rem;
+            text-align: right;
+        }
+        /* Timeline Styling */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15px;
+            height: 100%;
+            width: 2px;
+            background: var(--border-color);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 2px solid var(--border-color);
+        }
+        /* Project Card Styling */
+        .project-card {
+            border: 2px solid var(--border-color);
+            background-color: var(--secondary-bg);
+            transition: all 0.2s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+        }
+        .project-tag {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Main Header -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-4 brutalist-border">
+            <div class="mb-4 md:mb-0">
+                <h1 class="text-3xl">Het Rutul Joshi</h1>
+                <p class="text-lg accent-color">Security Researcher // FOSS Advocate</p>
+            </div>
+            <nav id="main-nav" class="flex flex-wrap">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- Home Page -->
+            <section id="home" class="page active">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div class="md:col-span-3 p-6 brutalist-border flex flex-col justify-center">
+                        <h2 class="text-5xl md:text-6xl font-bold mb-4">BUILDING<br><span class="accent-color">SECURE</span> SYSTEMS.</h2>
+                        <p class="text-lg leading-relaxed mb-6">
+                            A cybersecurity professional with a passion for post-quantum cryptography, open-source software, and defending digital infrastructures. Currently pursuing a Master's in CS.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="navigateTo('projects')" class="brutalist-button">View My Projects</button>
+                            <button onclick="navigateTo('contact')" class="brutalist-button">Get In Touch</button>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 image-container h-64 md:h-auto">
+                        <img src="https://i.imgur.com/8Q1Z2aH.jpg" alt="Hall of Nations, Pragati Maidan, New Delhi" onerror="this.onerror=null;this.src='https://placehold.co/600x800/111111/f0f0f0?text=Hall+of+Nations';">
+                        <div class="image-overlay">Hall of Nations, New Delhi</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Page -->
+            <section id="projects" class="page">
+                <h2 class="section-title">Projects Showcase</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project Card 1 -->
+                    <div class="project-card p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2">Post-Quantum Safe IoT Framework</h3>
+                        <p class="text-sm mb-4 flex-grow">Developed a PQC-secure IoT framework using CRYSTALS-Kyber, including a pure Python library for key generation, encryption, and decryption.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Cryptography</span>
+                            <span class="project-tag">IoT</span>
+                            <span class="project-tag">PQC</span>
+                        </div>
+                        <a href="https://github.com/Het-Joshi" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">View on GitHub</a>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="project-card p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2">CHARGE GUARD: DDoS Defense</h3>
+                        <p class="text-sm mb-4 flex-grow">Designed the attack architecture and mitigation strategies for protecting EV charging stations from DDoS attacks, analyzing the OCPP protocol for vulnerabilities.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-tag">Network Security</span>
+                            <span class="project-tag">Threat Modelling</span>
+                            <span class="project-tag">OCPP</span>
+                        </div>
+                         <a href="#" class="brutalist-button mt-auto">View Patent</a>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="project-card p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2">Self-Hosted Cloud Services</h3>
+                        <p class="text-sm mb-4 flex-grow">Experience in deploying and maintaining a suite of self-hosted services using Docker and Kubernetes, focusing on security hardening and reliability.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">Kubernetes</span>
+                            <span class="project-tag">Linux</span>
+                            <span class="project-tag">SysAdmin</span>
+                        </div>
+                        <a href="https://github.com/Het-Joshi" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">Explore Setup</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Page -->
+            <section id="work" class="page">
+                <h2 class="section-title">Work & Publications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div class="md:col-span-3 space-y-8">
+                        <div>
+                            <h3 class="text-2xl mb-4 accent-color">/ Professional Experience</h3>
+                            <div class="space-y-6">
+                                <div class="p-4 brutalist-border">
+                                    <h4 class="text-xl font-semibold">Security Research Intern @ IIT Bombay, Trust Lab</h4>
+                                    <p class="text-sm text-gray-400 mb-2">May 2024 - Present</p>
+                                    <p class="text-sm">Analyzing reverse proxy performance (Ngrok), privacy implications, and their potential as TOR relays. Leading IMC paper submission.</p>
+                                </div>
+                                <div class="p-4 brutalist-border">
+                                    <h4 class="text-xl font-semibold">Teaching Assistant @ Ramaiah Institute of Technology</h4>
+                                    <p class="text-sm text-gray-400 mb-2">Oct 2024 - Present</p>
+                                    <p class="text-sm">Delivered lectures on 'Cryptography' and 'Data Communication' to 160 students.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl mb-4 accent-color">/ Publications & Patents</h3>
+                            <div class="space-y-6">
+                                <div class="p-4 brutalist-border">
+                                    <h4 class="text-xl font-semibold">Book Chapter: Cryptographic Bastions</h4>
+                                    <p class="text-sm">Explores cloud security, access control, and encryption. (CRC Press)</p>
+                                    <a href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003455448-8/cryptographic-bastions-jayalakshmi-murthy-sowmya-g-m-shashi-kumar-g" target="_blank" rel="noopener noreferrer" class="text-accent-color hover:underline text-sm mt-2 inline-block">View Chapter</a>
+                                </div>
+                                <div class="p-4 brutalist-border">
+                                    <h4 class="text-xl font-semibold">Patent: CHARGE GUARD</h4>
+                                    <p class="text-sm">Method for early detection of DDoS attacks at EV charging stations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 image-container h-64 md:h-auto">
+                        <img src="https://i.imgur.com/mR5a07j.jpg" alt="Kanchanjunga Apartments, Mumbai" onerror="this.onerror=null;this.src='https://placehold.co/600x800/111111/f0f0f0?text=Kanchanjunga';">
+                        <div class="image-overlay">Kanchanjunga Apts, Mumbai</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Page -->
+            <section id="about" class="page">
+                <h2 class="section-title">About Me</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl mb-4 accent-color">/ My Philosophy</h3>
+                        <div class="p-6 brutalist-border mb-8">
+                            <p class="leading-relaxed">"I believe in the power of Free and Open Source Software (FOSS) to democratize technology and empower individuals. My work is driven by a commitment to building robust, secure, and privacy-respecting systems. For me, code is a tool for creating a more transparent and equitable digital future."</p>
+                        </div>
+                        <h3 class="text-2xl mb-4 accent-color">/ My Journey</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4 class="font-bold">Masters in CS</h4>
+                                <p class="text-sm text-gray-400">Coming Soon</p>
+                            </div>
+                             <div class="timeline-item">
+                                <h4 class="font-bold">Founder, Mukti</h4>
+                                <p class="text-sm text-gray-400">Aug 2023 - Present</p>
+                                <p class="text-sm">Founded the largest FOSS community in Karnataka.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold">B.E. in Computer Science</h4>
+                                <p class="text-sm text-gray-400">2021 - 2025</p>
+                                <p class="text-sm">Ramaiah Institute of Technology, Bangalore</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-container h-64 md:h-auto">
+                        <img src="https://i.imgur.com/gSYwZJ2.jpg" alt="IIM Ahmedabad" onerror="this.onerror=null;this.src='https://placehold.co/600x800/111111/f0f0f0?text=IIM+Ahmedabad';">
+                        <div class="image-overlay">IIM Ahmedabad</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Page -->
+            <section id="contact" class="page">
+                <h2 class="section-title">Contact</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-6 brutalist-border">
+                        <h3 class="text-2xl mb-4 accent-color">/ Connect</h3>
+                        <p class="mb-6">I'm always open to discussing new projects, research collaborations, or just talking tech. Feel free to reach out.</p>
+                        <div class="space-y-4">
+                            <p><strong>Email:</strong> <a href="mailto:hetjoshi.mukt@pm.me" class="hover:text-accent-color">hetjoshi.mukt@pm.me</a></p>
+                            <p><strong>Phone:</strong> +91-7400188414</p>
+                        </div>
+                    </div>
+                    <div class="p-6 brutalist-border flex flex-col justify-center items-start space-y-4">
+                         <a href="https://github.com/Het-Joshi" target="_blank" rel="noopener noreferrer" class="brutalist-button w-full text-center">GitHub Profile</a>
+                         <a href="#" class="brutalist-button w-full text-center">Download CV (PDF)</a>
+                         <a href="#" class="brutalist-button w-full text-center">Security Blog (Soon)</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const navLinks = document.querySelectorAll('#main-nav a');
+        const pages = document.querySelectorAll('.page');
+
+        function navigateTo(pageId) {
+            pages.forEach(page => page.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.hash === '#' + pageId) {
+                    link.classList.add('active');
+                }
+            });
+            // Use history.pushState to change the URL without a full page reload,
+            // which also allows the back/forward buttons to work as expected.
+            if (history.pushState) {
+                history.pushState(null, null, '#' + pageId);
+            } else {
+                window.location.hash = '#' + pageId;
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = e.target.hash.substring(1);
+                navigateTo(pageId);
+            });
+        });
+        
+        // Function to handle browser back/forward navigation
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.substring(1);
+            navigateTo(hash || 'home');
+        });
+
+        // Initial page load handler
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            navigateTo(hash || 'home');
+        });
+    </script>
+</body>
+</html>
