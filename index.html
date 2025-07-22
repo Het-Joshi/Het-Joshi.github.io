@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Het Rutul Joshi - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="favicon.ico" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
@@ -207,16 +208,16 @@
                             <span class="project-tag">IoT</span>
                             <span class="project-tag">PQC</span>
                         </div>
-                        <a href="https://github.com/Het-Joshi" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">View on GitHub</a>
                     </div>
                     <!-- Project Card 2 -->
                     <div class="project-card p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">Kavaach: Safeguarding Bharat's EV Charging Networks</h3>
+                        <h3 class="text-xl font-bold mb-2">Kavaach: testbed for Open Charge Point Protocol (OCPP)</h3>
                         <p class="text-sm mb-4 flex-grow">
-                            Security-focused research and emulation of cyber threats on India's EV infrastructure using OCPP protocols.
-                            Simulated real-world attacks like SYN floods, session hijacking, and billing exploits on Raspberry Pi clusters
-                            to propose resilient, low-cost mitigation strategies.
+                            Built the first de-facto OCPP testbed replicating real-world EV charging stations.
+                            Enabled simulation of attacks like SYN floods and billing exploits, empowering academia with a platform to research 
+                            and test cybersecurity solutions for EV OCPP networks.
                         </p>
+
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="project-tag">Network Security</span>
                             <span class="project-tag">Cyber Attacks</span>
@@ -224,7 +225,7 @@
                             <span class="project-tag">DDoS Mitigation</span>
                             <span class="project-tag">EV Infrastructure</span>
                         </div>
-                        <a href="#" class="brutalist-button mt-auto">Read Research</a>
+                        <a href="https://github.com/Het-Joshi/Kavaach" class="brutalist-button mt-auto">See the TestBed</a>
                     </div>
                     <!-- Project Card 3 -->
                     <div class="project-card p-6 flex flex-col">
@@ -241,6 +242,57 @@
                         </div>
                         <a href="https://github.com/Het-Joshi/Sanjay" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">Explore Setup</a>
                     </div>
+                    <!-- Project Card: RAIDing-the-Fort -->
+                    <div class="project-card p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2">RAIDing-the-Fort: Simulating Storage Attacks on RAID Arrays</h3>
+                        <p class="text-sm mb-4 flex-grow">
+                            Developed an interactive testbed for simulating RAID setups and disk-level attacks — empowering academic research in storage system security.
+                            The Bash-based RAIDVuln.sh script demonstrates real-time impacts of disk failures, corruption, and recovery across RAID 0/1/5/6 configurations using loopback devices.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-tag">Bash</span>
+                            <span class="project-tag">RAID</span>
+                            <span class="project-tag">Linux</span>
+                            <span class="project-tag">Storage Security</span>
+                            <span class="project-tag">Testbed</span>
+                        </div>
+                        <a href="https://github.com/Het-Joshi/RAIDing-the-Fort" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">Explore Script</a>
+                    </div>
+                    <!-- Project Card: NETRA - AIRS -->
+                    <div class="project-card p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2">NETRA: Automated Incident Response System (AIRS)</h3>
+                        <p class="text-sm mb-4 flex-grow">
+                            A real-time Automated Incident Response System integrating threat detection, decentralized threat intelligence,
+                            and self-healing infrastructure. NETRA leverages PySpark, ZeroMQ, and Crystals-Kyber to protect systems against 
+                            evolving cyber threats, including post-quantum attacks.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-tag">Cybersecurity</span>
+                            <span class="project-tag">PySpark</span>
+                            <span class="project-tag">ZeroMQ</span>
+                            <span class="project-tag">Post-Quantum Cryptography</span>
+                            <span class="project-tag">Ansible</span>
+                        </div>
+                        <a href="https://github.com/Het-Joshi/NETRA" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">Explore NETRA</a>
+                    </div>
+                    <!-- Project Card: LokDrishti -->
+                    <div class="project-card p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2">LokDrishti: Decentralized Log Monitoring & Threat Detection</h3>
+                        <p class="text-sm mb-4 flex-grow">
+                            LokDrishti is a PySpark-based client-server system designed for deployment across lab environments on slave machines. 
+                            It enables real-time log ingestion, system metric tracking, and security anomaly detection—making it ideal for 
+                            academic testbeds and controlled SOC simulations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-tag">PySpark</span>
+                            <span class="project-tag">Log Analysis</span>
+                            <span class="project-tag">Threat Detection</span>
+                            <span class="project-tag">Linux Monitoring</span>
+                            <span class="project-tag">TCP Sockets</span>
+                        </div>
+                        <a href="https://github.com/Het-Joshi/LokDrishti" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">View Repository</a>
+                    </div>
+
                 </div>
             </section>
 
@@ -306,7 +358,7 @@
                         <h3 class="text-2xl mb-4 accent-color">/ My Journey</h3>
                         <div class="timeline">
                             <div class="timeline-item">
-                                <h4 class="font-bold">Masters in CS</h4>
+                                <h4 class="font-bold">M.S in Computer Science</h4>
                                 <p class="text-sm text-gray-400">2025 - Present</p>
                                 <p class="text-sm">Northeastern University, Boston</p>
                             </div>
@@ -316,7 +368,7 @@
                                 <p class="text-sm">Founded the largest FOSS community in Karnataka.</p>
                             </div>
                             <div class="timeline-item">
-                                <h4 class="font-bold">B.E. in Computer Science</h4>
+                                <h4 class="font-bold">B.E. in Computer Science and Engineering</h4>
                                 <p class="text-sm text-gray-400">2021 - 2025</p>
                                 <p class="text-sm">Ramaiah Institute of Technology, Bangalore</p>
                             </div>
