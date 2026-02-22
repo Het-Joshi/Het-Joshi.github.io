@@ -3,454 +3,1085 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Het Rutul Joshi - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="favicon.ico" type="image/png">
+    <title>Het Rutul Joshi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #111111;
-            --text-color: #f0f0f0;
-            --accent-color: #FF9933; /* Saffron */
-            --border-color: #f0f0f0;
-            --secondary-bg: #1a1a1a;
+            --bg-deep: #0D1117; /* Deep Slate / Github Dark */
+            --text-cream: #F8FAFC; /* Clean Ice White */
+            --text-dim: #94A3B8; /* Cool Muted Gray */
+            --text-body: #E2E8F0; /* Soft Reading White */
+            --saffron: #5EEAD4; /* Bright Cyber Teal / Mint */
+            --saffron-glow: #99F6E4; /* Soft Teal Glow */
+            --warm-gold: #818CF8; /* Soft Indigo / Violet */
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Libre Franklin', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
-        ::selection {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        a { color: var(--saffron-glow); }
+
         body {
-            font-family: 'Fira Code', monospace;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            scroll-behavior: smooth;
+            background: var(--bg-deep);
+            color: var(--text-cream);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
+
+        /* ── GRAIN ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(13,17,23,0.95) 0%, rgba(13,17,23,0) 100%);
+            pointer-events: none;
+        }
+        nav * { pointer-events: auto; }
+
+        .nav-name {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
+            color: var(--text-cream);
+            text-decoration: none;
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards 1.5s;
         }
-        .brutalist-border {
-            border: 2px solid var(--border-color);
-            background-color: var(--secondary-bg);
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards 1.8s;
         }
-        .brutalist-button {
-            border: 2px solid var(--border-color);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: all 0.2s ease-in-out;
-            padding: 0.75rem 1.5rem;
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .brutalist-button:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            border-color: var(--accent-color);
-            box-shadow: 5px 5px 0px var(--border-color);
-            transform: translate(-2px, -2px);
-        }
-        .accent-color { color: var(--accent-color); }
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1rem;
-        }
-        .nav-link {
-            padding: 0.5rem 1rem;
-            border: 2px solid transparent;
-            text-transform: uppercase;
-            font-weight: 600;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .nav-link.active, .nav-link:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-        .page {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-        .page.active { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .image-container {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.4s ease;
             position: relative;
-            border: 2px solid var(--border-color);
         }
-        .image-container img {
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--saffron);
+            transition: width 0.4s ease;
+        }
+        .nav-links a:hover { color: var(--text-cream); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ── PARALLAX ── */
+        .parallax-scene {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            inset: 0;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+        .parallax-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        /* ── LOCKED IMAGES ── */
+        .scene-hero .parallax-bg {
+            background-image: url('https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+        .scene-hero .parallax-bg::after {
+            background: linear-gradient(to bottom,
+                rgba(13,17,23,0.6) 0%, rgba(13,17,23,0.4) 40%,
+                rgba(13,17,23,0.85) 80%, rgba(13,17,23,1) 100%);
+        }
+
+        .scene-mukti .parallax-bg {
+            background-image: url('https://wallpapercave.com/wp/wp6064234.jpg');
+            background-position: center 20%;
+            filter: grayscale(60%) contrast(110%) brightness(0.8);
+        }
+        .scene-mukti .parallax-bg::after {
+            background: linear-gradient(135deg,
+                rgba(13,17,23,0.95) 0%, rgba(13,17,23,0.8) 50%, rgba(13,17,23,0.95) 100%);
+        }
+
+        .scene-research .parallax-bg {
+            background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80');
+            filter: hue-rotate(190deg);
+        }
+        .scene-research .parallax-bg::after {
+            background: linear-gradient(to right,
+                rgba(13,17,23,0.95) 0%, rgba(13,17,23,0.7) 55%, rgba(13,17,23,0.9) 100%);
+        }
+
+        .scene-neu .parallax-bg {
+            background-image: url('https://images.unsplash.com/photo-1636657031509-0bc0f56b4e7e?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            filter: grayscale(40%);
+        }
+        .scene-neu .parallax-bg::after {
+            background: linear-gradient(to bottom,
+                rgba(13,17,23,0.85) 0%, rgba(13,17,23,0.6) 50%, rgba(13,17,23,0.95) 100%);
+        }
+
+        .scene-projects .parallax-bg {
+            background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80');
+            filter: sepia(10%) hue-rotate(180deg);
+        }
+        .scene-projects .parallax-bg::after {
+            background: rgba(13,17,23,0.92);
+        }
+
+        /* ── CONTENT ── */
+        .scene-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 6%;
+        }
+
+        .text-panel {
+            background: rgba(13,17,23,0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 4px;
+            padding: 2.5rem 3rem;
+        }
+
+        .chapter-heading, .hero-name, .chapter-body, .hero-tagline,
+        .hero-chapter-marker, .chapter-label, .scene-timeline,
+        .stat-number, .stat-label, .divider-quote {
+            text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.9);
+        }
+
+        /* ── HERO ── */
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .hero-profile-pic {
+            width: 360px;
+            height: 360px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            padding: 5px;
+            background: rgba(13,17,23,0.6);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.2s;
+            box-shadow: 0 0 40px rgba(94,234,212,0.1);
+        }
+
+        .hero-profile-pic img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
         }
-        .image-container:hover img { filter: grayscale(0%); }
-        .image-overlay {
+        .hero-chapter-marker {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--saffron);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1s ease forwards 0.3s;
+        }
+        .hero-name {
+            font-family: var(--font-serif);
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            color: var(--text-cream);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1.2s ease forwards 0.6s;
+        }
+        .hero-name em { font-style: italic; color: var(--saffron-glow); font-weight: 300; }
+
+        .hero-tagline {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--text-body);
+            max-width: 560px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: slideUp 1s ease forwards 1s;
+        }
+
+        .hero-scroll-cue {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(17, 17, 17, 0.8);
-            color: var(--text-color);
-            padding: 0.5rem;
-            font-size: 0.75rem;
-            text-align: right;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2.5s;
         }
-        /* Timeline Styling */
-        .timeline {
+        .hero-scroll-cue span {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+        }
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--saffron), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        /* ── AT A GLANCE BAR ── */
+        .glance-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 3rem 4%;
+            background: var(--bg-deep);
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .glance-item {
+            text-align: center;
+            min-width: 110px;
+        }
+
+        .glance-number {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--saffron-glow);
+            line-height: 1;
+        }
+
+        .glance-label {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 0.4rem;
+        }
+
+        /* ── CHAPTERS ── */
+        .chapter-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--saffron);
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(94,234,212,0.25);
+            display: inline-block;
+        }
+        .chapter-heading {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--text-cream);
+        }
+        .chapter-heading em { font-style: italic; color: var(--warm-gold); }
+
+        .chapter-body {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--text-body);
+            max-width: 620px;
+        }
+        .chapter-body strong { color: var(--text-cream); font-weight: 500; }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .scene-timeline {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: var(--text-dim);
+            margin-bottom: 0.75rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .stat { display: flex; flex-direction: column; }
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--saffron-glow);
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 0.4rem;
+        }
+
+        /* ── EXPERIENCE TIMELINE (recruiter-friendly) ── */
+        .exp-timeline {
+            margin-top: 2.5rem;
+        }
+
+        .exp-item {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            align-items: start;
+        }
+
+        .exp-date {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            color: var(--saffron);
+            padding-top: 0.35rem;
+            line-height: 1.6;
+        }
+
+        .exp-role {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-cream);
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-org {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--warm-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-desc {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-body);
+            line-height: 1.7;
+        }
+
+        /* ── HONORS STRIP ── */
+        .honors-section {
+            padding: 5rem 6%;
+            background: var(--bg-deep);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .honors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .honor-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
             position: relative;
-            padding: 2rem 0;
+            transition: all 0.4s ease;
         }
-        .timeline::before {
+
+        .honor-card::after {
             content: '';
             position: absolute;
             top: 0;
-            left: 15px;
+            left: 0;
+            width: 3px;
             height: 100%;
-            width: 2px;
-            background: var(--border-color);
+            background: var(--saffron);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-        .timeline-item {
+
+        .honor-card:hover {
+            border-color: rgba(94,234,212,0.3);
+            background: rgba(94,234,212,0.04);
+        }
+        .honor-card:hover::after { opacity: 1; }
+
+        .honor-type {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--saffron);
+            margin-bottom: 0.75rem;
+        }
+
+        .honor-title {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-cream);
+            line-height: 1.3;
+            margin-bottom: 0.4rem;
+        }
+
+        .honor-detail {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* ── PUB LIST ── */
+        .pub-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        .pub-list li {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        .pub-venue {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--saffron);
+            min-width: 100px;
+            padding-top: 0.3rem;
+        }
+        .pub-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-cream);
+            line-height: 1.4;
+        }
+        .pub-status {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        /* ── PROJECT CARDS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .project-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2.5rem;
             position: relative;
-            padding-left: 4rem;
-            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .timeline-item::before {
+        .project-card::before {
             content: '';
             position: absolute;
-            left: 9px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            border: 2px solid var(--border-color);
-        }
-        /* Project Card Styling */
-        .project-card {
-            border: 2px solid var(--border-color);
-            background-color: var(--secondary-bg);
-            transition: all 0.2s ease-in-out;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(to right, var(--saffron), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+            border-color: rgba(94,234,212,0.3);
+            background: rgba(94,234,212,0.04);
+            transform: translateY(-4px);
         }
+        .project-card:hover::before { opacity: 1; }
+
+        .project-index {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: rgba(94,234,212,0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .project-name {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-cream);
+            margin-bottom: 0.75rem;
+        }
+        .project-desc {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .project-tag {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 2px 8px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid rgba(129,140,248,0.3);
+            color: var(--warm-gold);
+        }
+
+        /* ── DIVIDER ── */
+        .scene-divider {
+            height: 25vh;
+            background: var(--bg-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .divider-quote {
+            font-family: var(--font-serif);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-dim);
+            text-align: center;
+            max-width: 700px;
+            padding: 0 2rem;
+            opacity: 0.6;
+        }
+        .divider-quote cite {
+            display: block;
+            margin-top: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-style: normal;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--saffron);
+        }
+
+        /* ── FOOTER ── */
+        .scene-footer {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 4%;
+        }
+        .footer-content { max-width: 600px; }
+        .footer-heading {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--text-cream);
+        }
+        .footer-heading em { font-style: italic; color: var(--saffron-glow); }
+        .footer-email {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            color: var(--saffron);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(94,234,212,0.4);
+            display: inline-block;
+            margin-top: 2rem;
+            transition: all 0.4s ease;
+        }
+        .footer-email:hover {
+            background: rgba(94,234,212,0.12);
+            border-color: var(--saffron);
+            box-shadow: 0 0 30px rgba(94,234,212,0.2);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        .footer-links a {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--text-cream); }
+        .footer-bottom {
+            margin-top: 5rem;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.15);
+        }
+
+        /* ── ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+        .reveal-delay-4 { transition-delay: 0.6s; }
+        .reveal-delay-5 { transition-delay: 0.75s; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.2); }
+        }
+
+        /* ── RESPONSIVE MEDIA QUERIES ── */
+        @media (max-width: 900px) {
+            /* Fix the Hero Layout for mobile */
+            .hero-layout {
+                flex-direction: column;
+                align-items: center; /* Center on mobile */
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-profile-pic {
+                order: -1; /* Puts image above text on mobile */
+                width: 180px; /* Smaller image for mobile */
+                height: 180px;
+                margin-bottom: 0.5rem;
+            }
+            .hero-tagline {
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            /* Stack other sections */
+            .split-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+            /* Adjust Glance Bar */
+            .glance-bar {
+                gap: 1.5rem;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            }
+
+            nav { padding: 1rem 4%; }
+            .nav-links { gap: 1.5rem; }
+            .scene-content { padding: 0 5%; }
+            .text-panel { padding: 2rem; }
+            .parallax-scene { min-height: auto; padding: 8rem 0; }
+            .parallax-bg { background-attachment: scroll; } /* Disables parallax on mobile for performance */
+            .honors-section { padding: 4rem 5%; }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; } /* Hide nav links on very small screens */
+            .pub-list li { flex-direction: column; gap: 0.5rem; }
+            .text-panel { padding: 1.5rem; }
+            .honors-grid { grid-template-columns: 1fr; }
+
+            /* Make text smaller for very small phones */
+            .hero-name { font-size: clamp(2.5rem, 12vw, 4rem); }
         }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <div class="max-w-6xl mx-auto">
-        <!-- Main Header -->
-        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-4 brutalist-border">
-            <div class="mb-4 md:mb-0">
-                <h1 class="text-3xl">Het Rutul Joshi</h1>
-                <p class="text-lg accent-color">Security Researcher // FOSS Advocate</p>
+    <nav>
+        <a href="#" class="nav-name">Het Joshi, Who?</a>
+        <div class="nav-links">
+            <a href="#mukti">Origins</a>
+            <a href="#research">Research</a>
+            <a href="#neu">Northeastern</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="parallax-scene scene-hero">
+        <div class="parallax-bg"></div>
+        <div class="scene-content">
+            <div class="hero-layout">
+
+                <div class="hero-text">
+                    <div class="hero-chapter-marker">Security Researcher · Systems Engineer · Hacker</div>
+                    <h1 class="hero-name">Het Rutul<br><em>Joshi</em></h1>
+                    <p class="hero-tagline text-panel">
+                        M.S. in Computer Science at Northeastern University. Architecting distributed systems, hunting network vulnerabilities, and dismantling tracking infrastructures. From securing ISRO's LIDAR sensors to exposing how Smart TVs fingerprint user data.
+                    </p>
+                </div>
+
+                <div class="hero-profile-pic">
+                    <img src="Me.png" alt="Het Rutul Joshi Profile Picture">
+                </div>
+
             </div>
-            <nav id="main-nav" class="flex flex-wrap">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-        </header>
+        </div>
+        <div class="hero-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="scroll-line"></div>
+        </div>
+    </div>
 
-        <!-- Main Content Area -->
-        <main>
-            <!-- Home Page -->
-            <section id="home" class="page active">
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-                    <div class="md:col-span-3 p-6 brutalist-border flex flex-col justify-center">
-                        <h2 class="text-5xl md:text-6xl font-bold mb-4">BUILDING<br><span class="accent-color">SECURE</span> SYSTEMS.</h2>
-                        <p class="text-lg leading-relaxed mb-6">
-                            A cybersecurity enthusiast with a passion for networks, operating systems, free open-source software, and defending digital infrastructures. Currently pursuing a Master's in Computer Science.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <button onclick="navigateTo('projects')" class="brutalist-button">View My Projects</button>
-                            <button onclick="navigateTo('contact')" class="brutalist-button">Get In Touch</button>
-                        </div>
-                    </div>
-                    <div class="md:col-span-2 image-container h-64 md:h-auto">
-                        <img src="Me.png" alt="Het Joshi" onerror="this.onerror=null;this.src='https://placehold.co/600x800/111111/f0f0f0?text=Hall+of+Nations';">
-                        <div class="image-overlay">"Everything is hackable, even your toothbrush"</div>
-                    </div>
+    <div class="glance-bar">
+        <div class="glance-item reveal">
+            <div class="glance-number">1</div>
+            <div class="glance-label">Book Chapter</div>
+        </div>
+        <div class="glance-item reveal reveal-delay-1">
+            <div class="glance-number">1</div>
+            <div class="glance-label">Published Patent</div>
+        </div>
+        <div class="glance-item reveal reveal-delay-2">
+            <div class="glance-number">30+</div>
+            <div class="glance-label">Workshops & Talks</div>
+        </div>
+        <div class="glance-item reveal reveal-delay-3">
+            <div class="glance-number">Founded</div>
+            <div class="glance-label">Largest FOSS Community in India</div>
+        </div>
+        <div class="glance-item reveal reveal-delay-5">
+            <div class="glance-number">1600+</div>
+            <div class="glance-label">Students Mentored</div>
+        </div>
+    </div>
+
+    <div class="parallax-scene scene-mukti" id="mukti">
+        <div class="parallax-bg"></div>
+        <div class="scene-content">
+            <div class="split-layout">
+                <div class="text-panel">
+                    <div class="chapter-label reveal">Chapter I — The Conviction</div>
+                    <h2 class="chapter-heading reveal reveal-delay-1">
+                        Beyond the<br><em>Syllabus</em>
+                    </h2>
+                    <p class="chapter-body reveal reveal-delay-2">
+                        My philosophy is simple: <cite><strong>"Everything is hackable, even your toothbrush."</strong></cite>  True engineering doesn't happen in a textbook; it happens when you break a system down to its silicon and rebuild it.
+                    </p>
+                    <p class="chapter-body reveal reveal-delay-3" style="margin-top: 1rem;">
+                        This conviction led to founding <strong>Mukti</strong>. What began as small weekend hackathons grew into the largest student Free and Open Source Software (FOSS) community in India. We scaled to a network of builders shipping real code, democratizing technology, and reclaiming our digital autonomy.
+                    </p>
+                    <p class="chapter-body reveal reveal-delay-4" style="margin-top: 1rem;">
+                        The mission was always the same: <strong>democratize access to real engineering knowledge</strong> — not the kind you get from a lecture, but the kind you earn by breaking things and rebuilding them better.
+                    </p>
                 </div>
-            </section>
+                <div></div>
+            </div>
+        </div>
+    </div>
 
-            <!-- Projects Page -->
-            <section id="projects" class="page">
-                <h2 class="section-title">Projects Showcase</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Project Card 1 -->
-                    <div class="project-card p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">Post-Quantum Safe IoT Framework</h3>
-                        <p class="text-sm mb-4 flex-grow">Developed a PQC-secure IoT framework using CRYSTALS-Kyber, including a pure Python library for key generation, encryption, and decryption.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Cryptography</span>
-                            <span class="project-tag">IoT</span>
-                            <span class="project-tag">PQC</span>
-                        </div>
-                    </div>
-                    <!-- Project Card 2 -->
-                    <div class="project-card p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">Kavaach: testbed for Open Charge Point Protocol (OCPP)</h3>
-                        <p class="text-sm mb-4 flex-grow">
-                            Built the first de-facto OCPP testbed replicating real-world EV charging stations.
-                            Enabled simulation of attacks like SYN floods and billing exploits, empowering academia with a platform to research 
-                            and test cybersecurity solutions for EV OCPP networks.
-                        </p>
+    <div class="scene-divider">
+        <div class="divider-quote">
+            "I am a man and all that affects mankind concerns me."
+            <cite>Bhagat Singh</cite>
+        </div>
+    </div>
 
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Network Security</span>
-                            <span class="project-tag">Cyber Attacks</span>
-                            <span class="project-tag">Raspberry Pi</span>
-                            <span class="project-tag">DDoS Mitigation</span>
-                            <span class="project-tag">EV Infrastructure</span>
-                        </div>
-                        <a href="https://github.com/Het-Joshi/Kavaach" class="brutalist-button mt-auto">See the TestBed</a>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="project-card p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">Sanjay: Malicious WiFi AP detector</h3>
-                        <p class="text-sm mb-4 flex-grow">A CLI tool to detect malicious or insecure Wi-Fi networks 
-                            through active and passive scanning. 
-                            Identifies threats like Evil Twin, Honeypots, and Deauth attacks using Scapy and Python.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">BASH</span>
-                            <span class="project-tag">Network Security</span>
-                            <span class="project-tag">WiFi</span>
-                            <span class="project-tag">Linux</span>
-                        </div>
-                        <a href="https://github.com/Het-Joshi/Sanjay" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">Explore Setup</a>
-                    </div>
-                    <!-- Project Card: RAIDing-the-Fort -->
-                    <div class="project-card p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">RAIDing-the-Fort: Simulating Storage Attacks on RAID Arrays</h3>
-                        <p class="text-sm mb-4 flex-grow">
-                            Developed an interactive testbed for simulating RAID setups and disk-level attacks — empowering academic research in storage system security.
-                            The Bash-based RAIDVuln.sh script demonstrates real-time impacts of disk failures, corruption, and recovery across RAID 0/1/5/6 configurations using loopback devices.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Bash</span>
-                            <span class="project-tag">RAID</span>
-                            <span class="project-tag">Linux</span>
-                            <span class="project-tag">Storage Security</span>
-                            <span class="project-tag">Testbed</span>
-                        </div>
-                        <a href="https://github.com/Het-Joshi/RAIDing-the-Fort" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">Explore Script</a>
-                    </div>
-                    <!-- Project Card: NETRA - AIRS -->
-                    <div class="project-card p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">NETRA: Automated Incident Response System (AIRS)</h3>
-                        <p class="text-sm mb-4 flex-grow">
-                            A real-time Automated Incident Response System integrating threat detection, decentralized threat intelligence,
-                            and self-healing infrastructure. NETRA leverages PySpark, ZeroMQ, and Crystals-Kyber to protect systems against 
-                            evolving cyber threats, including post-quantum attacks.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Cybersecurity</span>
-                            <span class="project-tag">PySpark</span>
-                            <span class="project-tag">ZeroMQ</span>
-                            <span class="project-tag">Post-Quantum Cryptography</span>
-                            <span class="project-tag">Ansible</span>
-                        </div>
-                        <a href="https://github.com/Het-Joshi/NETRA" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">Explore NETRA</a>
-                    </div>
-                    <!-- Project Card: LokDrishti -->
-                    <div class="project-card p-6 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">LokDrishti: Decentralized Log Monitoring & Threat Detection</h3>
-                        <p class="text-sm mb-4 flex-grow">
-                            LokDrishti is a PySpark-based client-server system designed for deployment across lab environments on slave machines. 
-                            It enables real-time log ingestion, system metric tracking, and security anomaly detection—making it ideal for 
-                            academic testbeds and controlled SOC simulations.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">PySpark</span>
-                            <span class="project-tag">Log Analysis</span>
-                            <span class="project-tag">Threat Detection</span>
-                            <span class="project-tag">Linux Monitoring</span>
-                            <span class="project-tag">TCP Sockets</span>
-                        </div>
-                        <a href="https://github.com/Het-Joshi/LokDrishti" target="_blank" rel="noopener noreferrer" class="brutalist-button mt-auto">View Repository</a>
-                    </div>
+    <div class="parallax-scene scene-research" id="research">
+        <div class="parallax-bg"></div>
+        <div class="scene-content">
+            <div class="text-panel" style="max-width: 820px;">
+                <div class="chapter-label reveal">Chapter II — ISRO · IIT Bombay · The Research Years</div>
+                <h2 class="chapter-heading reveal reveal-delay-1">
+                    Defending the<br><em>Architecture</em>
+                </h2>
+                <p class="chapter-body reveal reveal-delay-2">
+                    Two institutions. Two very different scales of infrastructure. The same question at the core: <strong>how do you secure systems that the world depends on but barely understands?</strong>
+                </p>
 
-                </div>
-            </section>
-
-            <!-- Work Page -->
-            <section id="work" class="page">
-                <h2 class="section-title">Work & Publications</h2>
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-                    <div class="md:col-span-3 space-y-8">
+                <div class="exp-timeline reveal reveal-delay-2">
+                    <div class="exp-item">
+                        <div class="exp-date">Apr — Jun 2024<br>Bengaluru</div>
                         <div>
-                            <h3 class="text-2xl mb-4 accent-color">/ Professional Experience</h3>
-                            <div class="space-y-6">
-                                <div class="p-4 brutalist-border">
-                                    <h4 class="text-xl font-semibold">Security Research Intern <span class="accent-color">@ IIT Bombay</span></h4>
-                                    <p class="text-sm text-gray-400 mb-2">May 2024 - May 2025</p>
-                                    <p class="text-sm">Analyzing reverse proxy performance (Ngrok), privacy implications, and their potential as TOR relays.</p>
-                                </div>
-                                <div class="p-4 brutalist-border">
-                                    <h4 class="text-xl font-semibold">Teaching Assistant <span class="accent-color">@ Ramaiah Institute of Technology</span></h4>
-                                    <p class="text-sm text-gray-400 mb-2">Oct 2024 - Jun 2025</p>
-                                    <p class="text-sm">Delivered lectures on 'Cryptography', 'Network Security' and 'Data Communication Networks' to 160+ students.</p>
-                                </div>
-                                <div class="p-4 brutalist-border">
-                                    <h4 class="text-xl font-semibold">Project Intern <span class="accent-color">@ Indian Space and Research Organisation (ISRO)</span></h4>
-                                    <p class="text-sm text-gray-400 mb-2">Apr 2024 - Jun 2024</p>
-                                    <p class="text-sm">Developed and secured a communication protocol for LIDAR sensor data on an embedded system.</p>
-                                </div>
-                            </div>
+                            <div class="exp-role">Systems & Software Security Intern</div>
+                            <div class="exp-org">Indian Space Research Organisation (ISRO)</div>
+                            <div class="exp-desc">Developed and secured a communication protocol for LIDAR sensor data on an embedded system. When you are writing code for aerospace hardware, failure means losing a satellite's eyes. Memory safety and secure boot chains are not optional.</div>
                         </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-date">May 2024 —<br>May 2025</div>
                         <div>
-                            <h3 class="text-2xl mb-4 accent-color">/ Publications & Patents</h3>
-                            <div class="space-y-6">
-                                <div class="p-4 brutalist-border">
-                                    <h4 class="text-xl font-semibold">Book Chapter: Cryptographic Bastions</h4>
-                                    <p class="text-sm">Explores cloud security, access control, and encryption. (CRC Press)</p>
-                                    <a href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003455448-5/cryptographic-bastions-het-joshi-neeraj-phadke" target="_blank" rel="noopener noreferrer" class="text-accent-color hover:underline text-sm mt-2 inline-block">View Chapter</a>
-                                </div>
-                                <div class="p-4 brutalist-border">
-                                    <h4 class="text-xl font-semibold">Patent (Gov. of India): CHARGE GUARD</h4>
-                                    <p class="text-sm">Method for early detection of DDoS attacks at EV charging stations.</p>
-                                </div>
-                            </div>
+                            <div class="exp-role">Security Researcher</div>
+                            <div class="exp-org">Indian Institute of Technology, Bombay</div>
+                            <div class="exp-desc">Investigated the hidden topology of tunnel-based reverse proxies (like Ngrok) under <a href="https://www.devashishgosain.com/">Prof. Devashish Gosain</a>. Analyzed their performance metrics, mapped their deep privacy implications, and modeled their viability as TOR relays.</div>
                         </div>
                     </div>
-                    <div class="md:col-span-2 image-container h-64 md:h-auto">
-                        <img src="Rani-ki-wav.png" alt="Rani Ki Vav, Gujarat" onerror="this.onerror=null;this.src='https://placehold.co/600x800/111111/f0f0f0">
-                        <div class="image-overlay">Rani Ki Vav, Gujarat</div>
-                    </div>
                 </div>
-            </section>
 
-            <!-- About Page -->
-            <section id="about" class="page">
-                <h2 class="section-title">About Me</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-2xl mb-4 accent-color">/ My Philosophy</h3>
-                        <div class="p-6 brutalist-border mb-8">
-                            <p class="leading-relaxed">"I believe in the power of Free and Open Source Software (FOSS) to 
-                                democratize technology and empower individuals. 
-                                My work is driven by a commitment to building robust, secure, and privacy-respecting systems.
-                                For me, code is a tool for creating a more transparent and equitable digital future."</p>
+                <ul class="pub-list reveal reveal-delay-2">
+                    <li>
+                        <span class="pub-venue">Book Chapter</span>
+                        <div>
+                            <div class="pub-title">Cryptographic Bastions</div>
+                            <div class="pub-status">Published by CRC Press · Explores cloud security, access control, and encryption. <a href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003455448-5/cryptographic-bastions-het-joshi-neeraj-phadke">Read Here</a></div>
                         </div>
-                        <h3 class="text-2xl mb-4 accent-color">/ My Journey</h3>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <h4 class="font-bold">M.S in Computer Science</h4>
-                                <p class="text-sm text-gray-400">2025 - Present</p>
-                                <p class="text-sm">Northeastern University, Boston</p>
-                            </div>
-                             <div class="timeline-item">
-                                <h4 class="font-bold">Founder, Mukti</h4>
-                                <p class="text-sm text-gray-400">Aug 2023 - Present</p>
-                                <p class="text-sm">Founded the largest FOSS community in Karnataka.</p>
-                            </div>
-                            <div class="timeline-item">
-                                <h4 class="font-bold">B.E. in Computer Science and Engineering</h4>
-                                <p class="text-sm text-gray-400">2021 - 2025</p>
-                                <p class="text-sm">Ramaiah Institute of Technology, Bangalore</p>
-                            </div>
+                    </li>
+                    <li>
+                        <span class="pub-venue">Patent</span>
+                        <div>
+                            <div class="pub-title">CHARGE GUARD: Method for early detection of DDoS attacks</div>
+                            <div class="pub-status">Published by Gov. of India · Kernel-level mitigation for EV charging infrastructure</div>
                         </div>
-                    </div>
-                    <div class="image-container h-64 md:h-auto">
-                        <img src="stupa.png" alt="Happy Valley, Uttarakhand" onerror="this.onerror=null;this.src='https://placehold.co/600x800/111111/f0f0f0">
-                        <div class="image-overlay">Happy Valley, Uttarakhand</div>
-                    </div>
-                </div>
-            </section>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-            <!-- Contact Page -->
-            <section id="contact" class="page">
-                <h2 class="section-title">Contact</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="p-6 brutalist-border">
-                        <h3 class="text-2xl mb-4 accent-color">/ Connect</h3>
-                        <p class="mb-6">I'm always open to discussing new projects, research collaborations, or just talking tech.
-                            Feel free to reach out.</p>
-                        <div class="space-y-4">
-                            <p><strong>Email:</strong> <a href="mailto:hetjoshi.mukt@pm.me" class="hover:text-accent-color">hetjoshi.mukt@pm.me</a></p>
-                            <p><strong>Phone:</strong> +91-7400188414 | +1(617)-922-0954</p>
+    <div class="scene-divider">
+        <div class="divider-quote">
+            "A ship in harbor is safe, but that is not what ships are built for." <cite>John A. Shedd</cite>
+        </div>
+    </div>
+
+    <div class="parallax-scene scene-neu" id="neu">
+        <div class="parallax-bg"></div>
+        <div class="scene-content">
+            <div class="split-layout">
+                <div class="text-panel">
+                    <div class="chapter-label reveal">Chapter III — The Present</div>
+                    <h2 class="chapter-heading reveal reveal-delay-1">
+                        Northeastern<br><em>University</em>
+                    </h2>
+                    <p class="chapter-body reveal reveal-delay-2">
+                        M.S. in Computer Science at <strong>Northeastern University</strong>. The focus has sharpened: network security, systems engineering, and low-level system architecture — working at the intersection where research meets real infrastructure.
+                    </p>
+
+                    <div class="exp-timeline reveal reveal-delay-2">
+                        <div class="exp-item">
+                            <div class="exp-date">2025 — Present<br>Boston, MA</div>
+                            <div>
+                                <div class="exp-role">Research Apprentice</div>
+                                <div class="exp-org">Under <a href="https://david.choffnes.com/">Prof. David Choffnes</a></div>
+                                <div class="exp-desc">Explored the invasive nature of Smart TVs at the <a href="https://moniotrlab.khoury.northeastern.edu/">Mon(IoT)r Lab</a>. Dissecting Automatic Content Recognition (ACR) systems across 8 major brands to map exactly how embedded hardware fingerprints user data, and building the tools to block it.</div>
+                            </div>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-date">Oct 2024 —<br>Jun 2025</div>
+                            <div>
+                                <div class="exp-role">Teaching Assistant</div>
+                                <div class="exp-org">Ramaiah Institute of Technology, Bangalore</div>
+                                <div class="exp-desc">Delivered lectures on Network Security, and Data Communication Networks to 120+ students. Understanding a system well enough to secure it means understanding it well enough to teach it.</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-6 brutalist-border flex flex-col justify-center items-start space-y-4">
-                         <a href="https://github.com/Het-Joshi" target="_blank" rel="noopener noreferrer" class="brutalist-button w-full text-center">GitHub Profile</a>
-                         <a href="https://www.linkedin.com/in/hetjoshi/" class="brutalist-button w-full text-center">LinkedIn</a>
-                         <a href="https://www.instagram.com/therealhetjoshi/" class="brutalist-button w-full text-center">Instagram</a>
-                         <a href="https://het-joshi.github.io/blog/" class="brutalist-button w-full text-center">The 'Generic' Blog</a>
-                         <a href="https://het-joshi.github.io/robots_txt/" class="brutalist-button w-full text-center">Security Blog</a>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="honors-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="chapter-label reveal">Recognition</div>
+            <h2 class="chapter-heading reveal reveal-delay-1" style="text-shadow: none;">
+                Honors & <em>Distinctions</em>
+            </h2>
+            <div class="honors-grid">
+                <div class="honor-card reveal reveal-delay-1">
+                    <div class="honor-type">Apprenticeship</div>
+                    <div class="honor-title">Graduate Apprentice under Prof. David Choffnes</div>
+                    <div class="honor-detail">Northeastern University. Research focusing on ACR systems, smart TV user privacy, and network fingerprinting.</div>
+                </div>
+                <div class="honor-card reveal reveal-delay-2">
+                    <div class="honor-type">Community</div>
+                    <div class="honor-title">Founder — Mukti FOSS Community</div>
+                    <div class="honor-detail">Largest student open-source community in Karnataka, India. Leading FOSS advocacy and engineering.</div>
+                </div>
+                <div class="honor-card reveal reveal-delay-2">
+                    <div class="honor-type">Research</div>
+                    <div class="honor-title">Security Researcher — IIT Bombay</div>
+                    <div class="honor-detail">Extensive research into Ngrok reverse proxy performance and TOR relay potential.</div>
+                </div>
+                <div class="honor-card reveal reveal-delay-2">
+                    <div class="honor-type">Patent</div>
+                    <div class="honor-title">CHARGE GUARD</div>
+                    <div class="honor-detail">Published patent (Gov. of India) for early detection of DDoS attacks in electric vehicle charging networks.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-scene scene-projects" id="projects">
+        <div class="parallax-bg"></div>
+        <div class="scene-content">
+            <div class="chapter-label reveal">Arsenal</div>
+            <h2 class="chapter-heading reveal reveal-delay-1">Selected <em>Work</em></h2>
+            <div class="projects-grid">
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-index">01</div>
+                    <div class="project-name">Kavaach: OCPP Testbed</div>
+                    <p class="project-desc">Built the first de-facto OCPP testbed replicating real-world EV charging stations. Enabled simulation of attacks like SYN floods and billing exploits, empowering academia to research cybersecurity solutions for EV networks.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Network Security</span>
+                        <span class="project-tag">Raspberry Pi</span>
+                        <span class="project-tag">DDoS Mitigation</span>
                     </div>
                 </div>
-            </section>
-        </main>
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-index">02</div>
+                    <div class="project-name">SSHRead: SSH Username based Covert Channel</div>
+                    <p class="project-desc">This project investigates the security vulnerability of covert channels within the SSH protocol, specifically addressing how data can be exfiltrated through authentication metadata rather than established connections.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">SSH</span>
+                        <span class="project-tag">Log Analysis</span>
+                    </div>
+                </div>
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-index">03</div>
+                    <div class="project-name">NETRA: AIRS</div>
+                    <p class="project-desc">A real-time Automated Incident Response System integrating threat detection, decentralized threat intelligence, and self-healing infrastructure using PySpark and ZeroMQ.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">PySpark</span>
+                        <span class="project-tag">ZeroMQ</span>
+                        <span class="project-tag">Post-Quantum</span>
+                    </div>
+                </div>
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-index">04</div>
+                    <div class="project-name">Sanjay: Malicious AP Detector</div>
+                    <p class="project-desc">A CLI tool to detect malicious or insecure Wi-Fi networks through active and passive scanning. Identifies threats like Evil Twin, Honeypots, and Deauth attacks using Scapy and Python.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Bash</span>
+                        <span class="project-tag">WiFi Security</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scene-footer" id="contact">
+        <div class="footer-content">
+            <div class="chapter-label reveal">Get In Touch</div>
+            <h2 class="footer-heading reveal reveal-delay-1">
+                Let's build something<br><em>resilient.</em>
+            </h2>
+            <p class="chapter-body reveal reveal-delay-2" style="text-align: center; margin: 0 auto;">
+                Let's talk FOSS, system architecture, or anything security.
+            </p>
+            <a href="mailto:hetjoshi.mukt@pm.me" class="footer-email reveal reveal-delay-3">hetjoshi.mukt@pm.me</a>
+            <div class="footer-links reveal reveal-delay-3">
+                <a href="https://github.com/Het-Joshi" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/hetjoshi/">LinkedIn</a>
+                <a href="https://het-joshi.github.io/blog/">'Generic' Blog</a>
+                <a href="https://het-joshi.github.io/robots_txt/">Security Blog</a>
+            </div>
+            <div class="footer-bottom reveal reveal-delay-4">
+                © 2026 Het Rutul Joshi · Compiled from the terminal
+            </div>
+        </div>
     </div>
 
     <script>
-        const navLinks = document.querySelectorAll('#main-nav a');
-        const pages = document.querySelectorAll('.page');
-
-        function navigateTo(pageId) {
-            pages.forEach(page => page.classList.remove('active'));
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.hash === '#' + pageId) {
-                    link.classList.add('active');
-                }
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-            // Use history.pushState to change the URL without a full page reload,
-            // which also allows the back/forward buttons to work as expected.
-            if (history.pushState) {
-                history.pushState(null, null, '#' + pageId);
-            } else {
-                window.location.hash = '#' + pageId;
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        const hero = document.querySelector('.scene-hero');
+        const heroContent = hero.querySelector('.scene-content');
+        document.addEventListener('mousemove', (e) => {
+            // Only apply parallax on larger screens to avoid mobile jitter
+            if (window.innerWidth > 900) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 8;
+                const y = (e.clientY / window.innerHeight - 0.5) * 5;
+                heroContent.style.transform = `translate(${x}px, ${y}px)`;
             }
-        }
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = e.target.hash.substring(1);
-                navigateTo(pageId);
-            });
-        });
-        
-        // Function to handle browser back/forward navigation
-        window.addEventListener('popstate', () => {
-            const hash = window.location.hash.substring(1);
-            navigateTo(hash || 'home');
-        });
-
-        // Initial page load handler
-        window.addEventListener('load', () => {
-            const hash = window.location.hash.substring(1);
-            navigateTo(hash || 'home');
         });
     </script>
+
 </body>
 </html>
