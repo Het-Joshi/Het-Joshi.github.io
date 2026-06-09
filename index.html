@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Het Rutul Joshi — RFC 2026 · Security Research</title>
-<meta name="description" content="Het Rutul Joshi — Security Researcher. Internet measurement, embedded systems, and the privacy of people who never agreed to be measured. Mon(IoT)r Lab, Northeastern. Formatted as an Internet-Draft." />
+<meta name="description" content="Het Rutul Joshi — security researcher. Internet measurement, embedded systems, and the privacy of people who never agreed to be measured. Mon(IoT)r Lab, Northeastern." />
 <meta name="theme-color" content="#FBFAF6" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,41 +16,31 @@
     --rule:#D9D6CC;
     --rule-soft:#E7E5DC;
     --muted:#6F6C62;
-    --accent:#A6321E;        /* oxblood / vermillion — carried over from the live site */
+    --accent:#A6321E;
     --accent-soft:#F1E5E0;
     --block:#F2F1EA;
     --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
     --serif:'IBM Plex Serif', Georgia, 'Times New Roman', serif;
     --measure:760px;
   }
-
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--serif);
-    font-size:17px;
-    line-height:1.62;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--serif);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
   }
   a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);transition:border-color .15s ease;}
   a:hover{border-color:var(--accent);}
   a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
-
   .wrap{max-width:var(--measure);margin:0 auto;padding:0 24px;}
 
-  /* ---- skip link ---- */
   .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:10px 16px;z-index:99;font-family:var(--mono);font-size:13px;}
   .skip:focus{left:12px;top:12px;}
 
-  /* ---- mono utility type ---- */
-  .mono{font-family:var(--mono);}
   .meta{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--muted);text-transform:uppercase;}
 
-  /* ===== MASTHEAD (the hero — an RFC header block) ===== */
+  /* ===== MASTHEAD ===== */
   .masthead{border-bottom:2px solid var(--ink);padding-top:34px;}
   .docrow{
     display:grid;grid-template-columns:1fr 1fr;gap:18px;
@@ -63,35 +53,20 @@
 
   .title-block{text-align:center;padding:52px 0 40px;}
   .doc-eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);}
-  h1.title{
-    font-family:var(--serif);font-weight:600;
-    font-size:clamp(38px,7vw,68px);line-height:1.02;
-    margin:.34em 0 .26em;letter-spacing:-.01em;
-  }
+  h1.title{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,68px);line-height:1.02;margin:.34em 0 .14em;letter-spacing:-.01em;}
   h1.title em{font-style:italic;color:var(--accent);}
+  .underline-doodle{display:block;margin:0 auto 16px;color:var(--accent);width:min(260px,70%);height:14px;}
   .subtitle{font-family:var(--mono);font-size:14px;color:var(--muted);letter-spacing:.04em;}
-  .caret{display:inline-block;width:.55ch;height:1.05em;background:var(--accent);transform:translateY(.16em);margin-left:.15ch;animation:blink 1.15s steps(1) infinite;}
-  @keyframes blink{50%{opacity:0;}}
 
-  /* abstract + status blocks */
   .memo{padding:30px 0 12px;}
-  .memo h2{
-    font-family:var(--mono);font-size:13px;font-weight:600;text-transform:uppercase;
-    letter-spacing:.14em;margin:0 0 10px;color:var(--ink);
-  }
-  .memo p{margin:0 0 26px;max-width:62ch;}
-  .memo .lead{font-size:19px;}
+  .memo h2{font-family:var(--mono);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;margin:0 0 10px;color:var(--ink);}
+  .memo p{margin:0 0 24px;max-width:62ch;}
+  .memo .lead{font-size:18px;}
 
-  /* form-feed page divider between sections */
-  .pagebreak{
-    display:flex;align-items:center;gap:14px;
-    font-family:var(--mono);font-size:11.5px;color:var(--muted);
-    letter-spacing:.08em;text-transform:uppercase;
-    margin:0;padding:30px 0;
-  }
+  .pagebreak{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:0;padding:30px 0;}
   .pagebreak::before,.pagebreak::after{content:"";height:1px;background:var(--rule);flex:1;}
 
-  /* ===== TABLE OF CONTENTS ===== */
+  /* ===== TOC ===== */
   nav.toc{padding:8px 0 4px;}
   nav.toc ol{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:14px;}
   nav.toc li{display:flex;align-items:baseline;padding:6px 0;}
@@ -107,9 +82,7 @@
   .sec-num{font-family:var(--mono);font-size:18px;color:var(--accent);font-weight:600;flex:none;}
   .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,4vw,32px);margin:0;letter-spacing:-.01em;}
   section p{max-width:64ch;}
-  .pull{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink);border-left:2px solid var(--accent);padding-left:18px;margin:24px 0;max-width:60ch;}
 
-  /* entry list (trajectory, publications, honors) */
   .entry{padding:22px 0;border-top:1px solid var(--rule-soft);}
   .entry:first-of-type{border-top:0;}
   .entry-top{display:flex;justify-content:space-between;gap:18px;align-items:baseline;flex-wrap:wrap;}
@@ -119,21 +92,17 @@
   .entry-role{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:3px 0 9px;}
   .entry p{margin:0;max-width:64ch;}
 
-  /* status tag */
-  .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
-    padding:2px 8px;border:1px solid var(--rule);border-radius:2px;color:var(--muted);vertical-align:middle;margin-left:8px;}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--rule);border-radius:2px;color:var(--muted);vertical-align:middle;margin-left:8px;}
   .tag.pub{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
 
-  /* ===== FIGURE / ASCII topology (signature element) ===== */
-  figure{margin:30px 0;}
-  .ascii{
-    background:var(--block);border:1px solid var(--rule);border-radius:3px;
-    font-family:var(--mono);font-size:12.5px;line-height:1.5;color:var(--ink);
-    padding:22px;overflow-x:auto;white-space:pre;
-  }
-  figcaption{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:8px;letter-spacing:.03em;}
+  /* ===== DOODLES ===== */
+  .doodles{margin:26px 0 4px;}
+  .doodle-row{display:flex;gap:34px;flex-wrap:wrap;align-items:flex-end;color:var(--ink);}
+  .doodle{width:auto;height:62px;color:var(--ink);transition:color .2s ease,transform .2s ease;}
+  .doodle:hover{color:var(--accent);transform:rotate(-2deg);}
+  .doodle-cap{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px;letter-spacing:.03em;}
 
-  /* ===== PROJECTS GRID ===== */
+  /* ===== PROJECTS ===== */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft);margin-top:8px;}
   .card{background:var(--paper);padding:22px 22px 24px;}
   .card-id{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;}
@@ -141,24 +110,20 @@
   .card .what{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
   .card p{font-size:15px;line-height:1.55;margin:0;max-width:none;color:#33342F;}
 
-  /* ===== SKILLS / PROTOCOL SUPPORT TABLE ===== */
+  /* ===== SKILLS ===== */
   .skilltable{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px;}
-  .skilltable th{
-    text-align:left;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;
-    color:var(--accent);font-weight:600;padding:12px 14px 12px 0;border-bottom:1px solid var(--ink);width:34%;vertical-align:top;white-space:nowrap;
-  }
+  .skilltable th{text-align:left;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);font-weight:600;padding:12px 14px 12px 0;border-bottom:1px solid var(--ink);width:34%;vertical-align:top;white-space:nowrap;}
   .skilltable td{padding:12px 0 12px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top;}
   .skilltable code{font-family:var(--mono);font-size:13px;background:var(--block);padding:1px 6px;border-radius:2px;color:#2C2D29;margin:0 2px 4px 0;display:inline-block;}
 
-  /* ===== AUTHORS' ADDRESSES (contact) ===== */
+  /* ===== CONTACT ===== */
   .addr{font-family:var(--mono);font-size:14px;line-height:2;}
   .addr .k{color:var(--muted);display:inline-block;width:7.5em;}
+  .closing{font-family:var(--serif);font-style:italic;font-size:19px;border-left:2px solid var(--accent);padding-left:18px;margin:34px 0 0;max-width:60ch;}
 
-  /* ===== FOOTER ===== */
   footer{border-top:2px solid var(--ink);margin-top:20px;padding:22px 0 60px;}
   .footrow{display:flex;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em;flex-wrap:wrap;}
 
-  /* reveal animation */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
 
@@ -170,12 +135,12 @@
     .skilltable th{width:auto;display:block;border-bottom:0;padding-bottom:2px;}
     .skilltable td{display:block;padding-left:0;padding-top:2px;}
     .title-block{padding:38px 0 30px;}
+    .doodle-row{gap:24px;}
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;}
     .reveal{opacity:1;transform:none;transition:none;}
     html{scroll-behavior:auto;}
-    .caret{animation:none;}
   }
 </style>
 </head>
@@ -184,82 +149,73 @@
 
 <div class="wrap">
 
-  <!-- ===================== MASTHEAD / HERO ===================== -->
+  <!-- ===== MASTHEAD ===== -->
   <header class="masthead">
     <div class="docrow">
       <div class="left">
         Independent Security Research<br>
         <span class="dim">Request for Comments:</span> <b>2026</b><br>
-        <span class="dim">Category:</span> Experimental<br>
-        <span class="dim">ISSN:</span> सत्य-1947
+        <span class="dim">Category:</span> Experimental
       </div>
       <div class="right">
         H. R. Joshi<br>
         <span class="dim">Mon(IoT)r Lab · Northeastern</span><br>
-        <span class="dim">Boston · 42.3398&deg; N</span><br>
-        <span class="dim">April 2026</span>
+        <span class="dim">Boston · April 2026</span>
       </div>
     </div>
 
     <div class="title-block">
       <div class="doc-eyebrow">Subject of Elevation</div>
-      <h1 class="title">Het Rutul <em>Joshi</em><span class="caret" aria-hidden="true"></span></h1>
+      <h1 class="title">Het Rutul <em>Joshi</em></h1>
+      <svg class="underline-doodle" viewBox="0 0 260 14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 9 C 50 2, 90 13, 134 6 S 214 2, 256 8" />
+      </svg>
       <div class="subtitle">security researcher · systems engineer · हेत</div>
     </div>
   </header>
 
-  <!-- abstract + status, in RFC voice -->
   <div class="memo reveal">
     <h2>Status of This Memo</h2>
-    <p>This memo documents the work of a security researcher operating where internet
-       measurement meets embedded systems — and the privacy of the people who never
-       agreed to be measured. From securing LIDAR firmware aboard aerospace hardware to
-       exposing how the television in your living room fingerprints you, the working
-       premise is the same one stated on the original elevation:
-       <em>everything is hackable, even your toothbrush.</em>
-       Distribution of this memo is unlimited.</p>
-
+    <p>I'm a security researcher working where internet measurement meets embedded systems —
+       and the privacy of people who never agreed to be measured. I've hardened LIDAR firmware
+       on aerospace hardware and exposed how smart TVs fingerprint the people who buy them.</p>
     <h2>Abstract</h2>
-    <p class="lead">M.S. Computer Science candidate at Northeastern University (Khoury College),
-       4.0 GPA, expected May 2027. Research apprentice in the Mon(IoT)r Lab under Prof. David
-       Choffnes. Author of a CRC Press book chapter, a Government of India patent, and a
-       growing record of measurement work across network privacy, EV-charging security, and
-       the emerging attack surface of AI agents. Founder of Mukti, among the largest student
-       open-source communities in India.</p>
+    <p class="lead">M.S. Computer Science at Northeastern (Khoury College), 4.0 GPA, graduating
+       May 2027. Research apprentice in the
+       <a href="https://moniotrlab.khoury.northeastern.edu/" target="_blank" rel="noopener">Mon(IoT)r Lab</a>
+       under <a href="https://david.choffnes.com/" target="_blank" rel="noopener">Prof. David Choffnes</a>.
+       One CRC Press book chapter, one Government of India patent, and measurement work across
+       network privacy, EV-charging security, and the attack surface of AI agents. I founded Mukti,
+       among the largest student open-source communities in India.</p>
   </div>
 
-  <!-- ===================== TABLE OF CONTENTS ===================== -->
+  <!-- ===== TOC ===== -->
   <div class="pagebreak">[Joshi] &nbsp;·&nbsp; Experimental &nbsp;·&nbsp; [Page 1]</div>
 
   <nav class="toc reveal" id="toc" aria-label="Table of contents">
     <ol>
-      <li><span class="num">1.</span><a href="#intro">Introduction — the conviction</a><span class="leader"></span><span class="pg">2</span></li>
+      <li><span class="num">1.</span><a href="#intro">Introduction</a><span class="leader"></span><span class="pg">2</span></li>
       <li><span class="num">2.</span><a href="#trajectory">Affiliations &amp; trajectory</a><span class="leader"></span><span class="pg">2</span></li>
       <li><span class="num">3.</span><a href="#pubs">Publications &amp; patents</a><span class="leader"></span><span class="pg">3</span></li>
-      <li><span class="num">4.</span><a href="#systems">Selected systems</a><span class="leader"></span><span class="pg">4</span></li>
-      <li><span class="num">5.</span><a href="#skills">Protocol support — skills</a><span class="leader"></span><span class="pg">5</span></li>
+      <li><span class="num">4.</span><a href="#systems">Selected Projects</a><span class="leader"></span><span class="pg">4</span></li>
+      <li><span class="num">5.</span><a href="#skills">My Skills</a><span class="leader"></span><span class="pg">5</span></li>
       <li><span class="num">6.</span><a href="#honors">Honors &amp; distinctions</a><span class="leader"></span><span class="pg">6</span></li>
       <li><span class="num">7.</span><a href="#contact">Authors' addresses</a><span class="leader"></span><span class="pg">6</span></li>
     </ol>
   </nav>
 
-  <!-- ===================== 1. INTRODUCTION ===================== -->
+  <!-- ===== 1. INTRODUCTION ===== -->
   <div class="pagebreak">[Joshi] &nbsp;·&nbsp; Experimental &nbsp;·&nbsp; [Page 2]</div>
 
   <section id="intro" class="reveal">
-    <div class="sec-head"><span class="sec-num">1.</span><h2>Introduction — the conviction</h2></div>
-    <p>True engineering doesn't happen in a textbook; it happens when you break a system down
-       to its silicon and rebuild it better. That conviction is what turned a handful of weekend
-       hackathons into <a href="https://mukticommunity.github.io/" target="_blank" rel="noopener">Mukti</a> —
-       one of the largest student Free and Open Source Software communities in India, a network of
-       builders shipping real code and reclaiming their digital autonomy.</p>
-    <p class="pull">"I am a man, and all that affects mankind concerns me." — Bhagat Singh</p>
-    <p>The mission has never changed: democratize the kind of engineering knowledge you don't get
-       from a lecture, but earn by taking things apart. The work below is that mission applied to
-       the systems most people are forced to trust without ever being asked.</p>
+    <div class="sec-head"><span class="sec-num">1.</span><h2>Introduction</h2></div>
+    <p>I learn systems by taking them apart. That instinct turned a few weekend hackathons into
+       <a href="https://mukticommunity.github.io/" target="_blank" rel="noopener">Mukti</a> — one of
+       the largest student FOSS communities in India, with 1,600+ students mentored. Everything below
+       is the same instinct applied to systems people are forced to trust without being asked.</p>
   </section>
 
-  <!-- ===================== 2. TRAJECTORY ===================== -->
+  <!-- ===== 2. TRAJECTORY ===== -->
   <section id="trajectory" class="reveal">
     <div class="sec-head"><span class="sec-num">2.</span><h2>Affiliations &amp; trajectory</h2></div>
 
@@ -269,20 +225,22 @@
         <span class="entry-date">2025 — present · Boston</span>
       </div>
       <div class="entry-role">graduate research apprentice · adv. Prof. David Choffnes</div>
-      <p>Dissecting blackbox automatic content recognition (ACR) across twelve retail smart TVs
-         spanning eight operating systems — mapping exactly how the firmware fingerprints the
-         people who buy them, and whether opt-out switches do anything at all.</p>
+      <p>I audit blackbox systems across twelve retail smart TVs on eight operating systems — how the
+         firmware fingerprints buyers, and whether the opt-out switches do anything at all.
+         <a href="https://moniotrlab.khoury.northeastern.edu/" target="_blank" rel="noopener">Mon(IoT)r Lab ↗</a></p>
     </div>
 
     <div class="entry">
       <div class="entry-top">
-        <p class="entry-title"><span class="who">IIT Bombay</span> — Trust Lab</p>
+        <p class="entry-title"><span class="who">IIT Bombay</span> — Trust Lab (ONYX)</p>
         <span class="entry-date">May 2024 — May 2025 · Mumbai</span>
       </div>
-      <div class="entry-role">security researcher · adv. Prof. Devashish Gosain</div>
+      <div class="entry-role">visiting researcher · adv. Devashish Gosain &amp; Piyush Kumar Sharma</div>
       <p>First empirical measurement of tunnel-based reverse-proxy services (Ngrok, Cloudflared,
-         and peers) across distributed vantage points — mapping their hidden topology, privacy
-         implications, and viability as Tor relays. Lead author on the resulting study.</p>
+         and peers) across distributed vantage points — their hidden topology, privacy implications,
+         and viability as Tor relays. Lead author.
+         <a href="https://www.devashishgosain.com/" target="_blank" rel="noopener">Gosain ↗</a> ·
+         <a href="https://www.piyushs.in/" target="_blank" rel="noopener">Sharma ↗</a></p>
     </div>
 
     <div class="entry">
@@ -291,9 +249,9 @@
         <span class="entry-date">Apr — Jun 2024 · Bengaluru</span>
       </div>
       <div class="entry-role">systems &amp; software security intern</div>
-      <p>Designed and hardened a communication protocol for LIDAR sensor data on embedded
-         aerospace hardware. When failure means losing a satellite's eyes, memory safety and a
-         verified secure-boot chain are not optional.</p>
+      <p>I designed and hardened a communication protocol for LIDAR sensor data on embedded
+         aerospace hardware — memory safety and a verified secure-boot chain, where failure means
+         losing a satellite's eyes.</p>
     </div>
 
     <div class="entry">
@@ -302,13 +260,12 @@
         <span class="entry-date">Oct 2024 — Jun 2025 · Bangalore</span>
       </div>
       <div class="entry-role">teaching assistant · network security</div>
-      <p>Lectured 120+ students on Network Security and Data Communication Networks — ARP
-         poisoning, IPv6 MITM, Snort IDS, SambaCry — with labs that made them earn the concept
-         by breaking it first. To secure a system is to understand it well enough to teach it.</p>
+      <p>I lectured 120+ students on network security and data communication — ARP poisoning,
+         IPv6 MITM, Snort, SambaCry — with labs that made them break the concept before trusting it.</p>
     </div>
   </section>
 
-  <!-- ===================== 3. PUBLICATIONS ===================== -->
+  <!-- ===== 3. PUBLICATIONS ===== -->
   <div class="pagebreak">[Joshi] &nbsp;·&nbsp; Experimental &nbsp;·&nbsp; [Page 3]</div>
 
   <section id="pubs" class="reveal">
@@ -330,59 +287,78 @@
         <span class="entry-date">Gov. of India · published</span>
       </div>
       <div class="entry-role">kernel-level detection · TinyML + eBPF</div>
-      <p>A method for early detection and in-kernel mitigation of DDoS attacks against EV charging
-         infrastructure, built on the Kavaach OCPP testbed.</p>
+      <p>Early detection and in-kernel mitigation of DDoS against EV charging infrastructure, built
+         on the Kavaach OCPP testbed.</p>
     </div>
 
     <div class="entry">
       <div class="entry-top">
-        <p class="entry-title">OCPP 1.6 vs 2.0.1 — a security analysis <span class="tag">Accepted · RAID 2026</span></p>
+        <p class="entry-title">OCPP 1.6 vs 2.0.1 — a security analysis <span class="tag">Under review</span></p>
         <span class="entry-date">sole author</span>
       </div>
       <div class="entry-role">threat exposure index · profile-downgrade attack</div>
-      <p>Why the newer, TLS-mandating protocol revision can end up <em>more</em> interceptable than
-         its predecessor in practice, and a quantitative index for reasoning about the gap.</p>
+      <p>Why the newer, TLS-mandating revision can end up more interceptable in practice, plus a
+         quantitative index for reasoning about the gap.</p>
     </div>
 
     <div class="entry">
       <div class="entry-top">
-        <p class="entry-title">Watching the Watchers — smart-TV ACR audit <span class="tag">Under submission</span></p>
-        <span class="entry-date">w/ Mon(IoT)r Lab</span>
+        <p class="entry-title">Smart-TV Privacy audit <span class="tag">Under review</span></p>
       </div>
       <div class="entry-role">12 TVs · 8 operating systems</div>
-      <p>An audit of automatic content recognition across retail televisions: which opt-outs are
-         honored, which keep transmitting regardless, and what leaks out the side channels.</p>
+      <p>Which opt-outs are honored, which keep transmitting regardless, and what leaks out the side
+         channels.</p>
     </div>
 
     <div class="entry">
       <div class="entry-top">
-        <p class="entry-title">Tunnel &amp; reverse-proxy measurement <span class="tag">Under submission</span></p>
+        <p class="entry-title">Tunnel &amp; reverse-proxy measurement <span class="tag">Under review</span></p>
         <span class="entry-date">w/ IITB Trust Lab</span>
       </div>
       <div class="entry-role">13 services · ~2,000 crowdsourced probes</div>
-      <p>A distributed-systems characterization of expose/tunnel services, with consistency and
-         geographic-distribution metrics built from a large probe campaign.</p>
+      <p>A distributed-systems characterization of expose/tunnel services across a large probe campaign.</p>
     </div>
   </section>
 
-  <!-- ===================== 4. SYSTEMS ===================== -->
+  <!-- ===== 4. SYSTEMS ===== -->
   <div class="pagebreak">[Joshi] &nbsp;·&nbsp; Experimental &nbsp;·&nbsp; [Page 4]</div>
 
   <section id="systems" class="reveal">
     <div class="sec-head"><span class="sec-num">4.</span><h2>Selected systems</h2></div>
 
-    <!-- signature: ASCII topology figure -->
-    <figure>
-      <div class="ascii" role="img" aria-label="ASCII topology diagram of a measurement vantage-point mesh feeding a central analysis node.">
-   vp-01 ────┐
-   vp-02 ────┤        ┌──────────────┐        ┌────────────┐
-   vp-03 ────┼───────▶│  collector   │───────▶│  analysis  │
-     ...     │        │  (parallel)  │        │  + storage │
-   vp-20 ────┘        └──────────────┘        └────────────┘
-              probes              ~2 TB / day            findings
+    <div class="doodles">
+      <div class="doodle-row" aria-hidden="true">
+        <!-- TV with an eye -->
+        <svg class="doodle" viewBox="0 0 80 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 16 C 7 15, 73 14, 72 16 C 74 30, 73 46, 72 48 C 40 50, 12 49, 8 48 C 6 34, 7 18, 8 16 Z"/>
+          <path d="M30 12 L42 6 M48 12 L40 6"/>
+          <path d="M26 52 L22 60 M54 52 L58 60"/>
+          <path d="M28 32 C 34 26, 46 26, 52 32 C 46 38, 34 38, 28 32 Z"/>
+          <circle cx="40" cy="32" r="3.2"/>
+        </svg>
+        <!-- EV charging plug -->
+        <svg class="doodle" viewBox="0 0 56 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8 C 15 7, 41 7, 40 8 C 42 16, 41 26, 40 30 C 30 38, 26 38, 16 30 C 14 24, 15 10, 16 8 Z"/>
+          <path d="M22 8 L22 0 M34 8 L34 0"/>
+          <circle cx="24" cy="18" r="2"/><circle cx="32" cy="18" r="2"/>
+          <path d="M28 38 L28 50 C 28 58, 44 56, 44 50 L44 44"/>
+        </svg>
+        <!-- padlock -->
+        <svg class="doodle" viewBox="0 0 52 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 28 C 9 27, 43 27, 42 28 C 44 38, 43 52, 42 54 C 26 56, 12 55, 10 54 C 8 44, 9 30, 10 28 Z"/>
+          <path d="M16 28 C 14 14, 38 14, 36 28"/>
+          <path d="M26 38 L26 46"/>
+        </svg>
+        <!-- satellite -->
+        <svg class="doodle" viewBox="0 0 84 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M34 26 C 33 25, 51 25, 50 26 C 52 32, 51 40, 50 42 C 40 44, 35 43, 34 42 C 32 36, 33 28, 34 26 Z"/>
+          <path d="M16 24 L33 30 L31 40 L14 34 Z"/>
+          <path d="M51 30 L68 24 L70 34 L53 40 Z"/>
+          <path d="M42 44 L42 54 M30 58 C 38 52, 46 52, 54 58"/>
+        </svg>
       </div>
-      <figcaption>fig. 4.1 — distributed measurement mesh: 20 vantage points → collector → analysis.</figcaption>
-    </figure>
+      <p class="doodle-cap">things I take apart: televisions, chargers, locks, satellites.</p>
+    </div>
 
     <div class="grid">
       <div class="card">
@@ -397,33 +373,33 @@
         <h3>AI Agent Security Mesh</h3>
         <div class="what">mcp-aware reverse proxy · semantic DLP</div>
         <p>A reverse proxy that understands the Model Context Protocol and applies semantic
-           data-loss prevention between an agent and the tools it can reach.</p>
+           data-loss prevention between an agent and the tools it reaches.</p>
       </div>
       <div class="card">
         <div class="card-id">sys-03 · agent security</div>
         <h3>WhisperBridge</h3>
         <div class="what">tor-routed local LLM · PII anonymization</div>
-        <p>Multi-agent indirect-prompt-injection defense that treats all fetched web content as an
-           untrusted threat vector before it ever reaches the model.</p>
+        <p>Multi-agent prompt-injection defense that treats all fetched web content as untrusted
+           before it reaches the model.</p>
       </div>
       <div class="card">
         <div class="card-id">sys-04 · cloud security</div>
         <h3>EgressProbe</h3>
         <div class="what">go · kubernetes egress auditor</div>
-        <p>Audits Kubernetes egress policy — what a workload can actually reach versus what its
-           network policy claims to allow.</p>
+        <p>Audits Kubernetes egress — what a workload can actually reach versus what its network
+           policy claims to allow.</p>
       </div>
       <div class="card">
         <div class="card-id">sys-05 · tooling</div>
         <h3>paperlab</h3>
         <div class="what">fastapi · ollama · fully local</div>
         <p>A local AI research workbench for reviewing measurement papers — reviewer personas, a
-           fact-check pipeline, and self-hosted search, all on a 16GB laptop.</p>
+           fact-check pipeline, self-hosted search, all on a 16GB laptop.</p>
       </div>
       <div class="card">
         <div class="card-id">sys-06 · covert channels</div>
         <h3>SSHRead <span class="tag">Under review</span></h3>
-        <div class="what">channel where none should exist</div>
+        <div class="what">a channel where none should exist</div>
         <p>A covert channel riding a service deployed across most of the internet — no session, no
            data plane, no signature. Mechanism withheld pending peer review.</p>
       </div>
@@ -432,50 +408,34 @@
         <h3>Kavaach</h3>
         <div class="what">ocpp testbed · python · rpi</div>
         <p>The de-facto OCPP testbed replicating real EV charging stations — SYN floods, billing
-           exploits, and kernel-level mitigation benchmarks.</p>
+           exploits, kernel-level mitigation benchmarks.</p>
       </div>
       <div class="card">
         <div class="card-id">sys-08 · wifi security</div>
         <h3>Sanjay</h3>
         <div class="what">cli · scapy</div>
-        <p>Detects malicious or insecure Wi-Fi — Evil Twin, Honeypot, and Deauth attacks — through
-           active and passive scanning.</p>
+        <p>Detects malicious Wi-Fi — Evil Twin, Honeypot, Deauth — through active and passive scanning.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 5. SKILLS ===================== -->
+  <!-- ===== 5. SKILLS ===== -->
   <div class="pagebreak">[Joshi] &nbsp;·&nbsp; Experimental &nbsp;·&nbsp; [Page 5]</div>
 
   <section id="skills" class="reveal">
     <div class="sec-head"><span class="sec-num">5.</span><h2>Protocol support — skills</h2></div>
     <table class="skilltable">
       <tbody>
-        <tr>
-          <th scope="row">Languages</th>
-          <td><code>Python</code><code>Go</code><code>C</code><code>Bash</code><code>JavaScript</code><code>SQL</code></td>
-        </tr>
-        <tr>
-          <th scope="row">Systems &amp; infra</th>
-          <td><code>Linux</code><code>eBPF</code><code>Kubernetes</code><code>Docker</code><code>Podman</code><code>AWS / S3</code><code>embedded / RPi</code></td>
-        </tr>
-        <tr>
-          <th scope="row">Measurement</th>
-          <td><code>tcpdump</code><code>Wireshark</code><code>Scapy</code><code>Zeek</code><code>mitmproxy</code><code>Tranco</code><code>OONI</code><code>Globalping</code></td>
-        </tr>
-        <tr>
-          <th scope="row">Security</th>
-          <td><code>ARP / IPv6 MITM</code><code>Snort IDS</code><code>secure boot</code><code>reverse engineering</code><code>OCPP</code><code>MQTT</code><code>TLS</code><code>fuzzing</code></td>
-        </tr>
-        <tr>
-          <th scope="row">ML &amp; agents</th>
-          <td><code>TinyML</code><code>local LLMs (Ollama)</code><code>embeddings</code><code>multi-agent / MCP</code><code>prompt-injection defense</code></td>
-        </tr>
+        <tr><th scope="row">Languages</th><td><code>Python</code><code>Go</code><code>C</code><code>Bash</code><code>JavaScript</code><code>SQL</code></td></tr>
+        <tr><th scope="row">Systems &amp; infra</th><td><code>Linux</code><code>eBPF</code><code>Kubernetes</code><code>Docker</code><code>Podman</code><code>AWS / S3</code><code>embedded / RPi</code></td></tr>
+        <tr><th scope="row">Measurement</th><td><code>tcpdump</code><code>Wireshark</code><code>Scapy</code><code>Zeek</code><code>mitmproxy</code><code>Tranco</code><code>OONI</code><code>Globalping</code></td></tr>
+        <tr><th scope="row">Security</th><td><code>ARP / IPv6 MITM</code><code>Snort IDS</code><code>secure boot</code><code>reverse engineering</code><code>OCPP</code><code>MQTT</code><code>TLS</code><code>fuzzing</code></td></tr>
+        <tr><th scope="row">ML &amp; agents</th><td><code>TinyML</code><code>local LLMs (Ollama)</code><code>embeddings</code><code>multi-agent / MCP</code><code>prompt-injection defense</code></td></tr>
       </tbody>
     </table>
   </section>
 
-  <!-- ===================== 6. HONORS ===================== -->
+  <!-- ===== 6. HONORS ===== -->
   <div class="pagebreak">[Joshi] &nbsp;·&nbsp; Experimental &nbsp;·&nbsp; [Page 6]</div>
 
   <section id="honors" class="reveal">
@@ -483,11 +443,12 @@
 
     <div class="entry">
       <div class="entry-top"><p class="entry-title">Khoury Graduate Research Apprenticeship</p><span class="entry-date">2025 — present</span></div>
-      <p>Awarded at Northeastern. Research on ACR systems, smart-TV privacy, and network fingerprinting. 4.0 GPA.</p>
+      <p>Research on ACR systems, smart-TV privacy, and network fingerprinting. 4.0 GPA.</p>
     </div>
     <div class="entry">
       <div class="entry-top"><p class="entry-title">fwd:cloudsec — Scholarship</p><span class="entry-date">2025</span></div>
-      <p>Conference scholarship; application centered on cloud egress controls and EgressProbe.</p>
+      <p>Conference scholarship centered on cloud egress controls and EgressProbe.
+         <a href="https://fwdcloudsec.org/" target="_blank" rel="noopener">fwdcloudsec.org ↗</a></p>
     </div>
     <div class="entry">
       <div class="entry-top"><p class="entry-title">Founder — Mukti FOSS Community</p><span class="entry-date">2020 — present</span></div>
@@ -495,7 +456,8 @@
     </div>
     <div class="entry">
       <div class="entry-top"><p class="entry-title">Top Speaker — FOSSMeet '24 &amp; '25</p><span class="entry-date">NIT Calicut</span></div>
-      <p>Workshops and talks on digital privacy, anonymity, and security threats.</p>
+      <p>Workshops and talks on digital privacy, anonymity, and security threats.
+         <a href="https://fossmeet.in/" target="_blank" rel="noopener">fossmeet.in ↗</a></p>
     </div>
     <div class="entry">
       <div class="entry-top"><p class="entry-title">Patent — ChargeGuard, Gov. of India</p><span class="entry-date">published</span></div>
@@ -507,7 +469,7 @@
     </div>
   </section>
 
-  <!-- ===================== 7. CONTACT ===================== -->
+  <!-- ===== 7. CONTACT ===== -->
   <section id="contact" class="reveal">
     <div class="sec-head"><span class="sec-num">7.</span><h2>Authors' addresses</h2></div>
     <div class="addr">
@@ -516,7 +478,7 @@
       <div><span class="k">Professional</span> <a href="https://www.linkedin.com/in/hetjoshi/" target="_blank" rel="noopener">linkedin.com/in/hetjoshi</a></div>
       <div><span class="k">Writing</span> <a href="https://het-joshi.github.io/blog/" target="_blank" rel="noopener">het-joshi.github.io/blog</a></div>
     </div>
-    <p class="pull" style="margin-top:34px;">Let's build something resilient. FOSS, system architecture, or anything security.</p>
+    <p class="closing">Let's build something resilient - FOSS, system architecture, or anything security.</p>
   </section>
 
   <footer>
@@ -529,18 +491,12 @@
 </div>
 
 <script>
-  // scroll reveal — quiet, and disabled for reduced-motion users
   (function(){
     var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var els = document.querySelectorAll('.reveal');
-    if (rm || !('IntersectionObserver' in window)) {
-      els.forEach(function(e){ e.classList.add('in'); });
-      return;
-    }
+    if (rm || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-      });
+      entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
     els.forEach(function(e){ io.observe(e); });
   })();
